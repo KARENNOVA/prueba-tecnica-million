@@ -8,7 +8,7 @@ export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: 'white',
+        backgroundColor: '#f6f5fa',
     },
     title: {
         fontSize: 30,

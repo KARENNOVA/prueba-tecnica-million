@@ -1,4 +1,4 @@
-export interface ProductResponse {
+export interface CryptoResponse {
     id: string;
     symbol: string;
     name: string;
@@ -18,7 +18,7 @@ export interface ProductResponse {
 }
 
 export interface Response {
-    data: ProductResponse[];
+    data: CryptoResponse[];
     info?: {
         coins_num: number;
         time: number;

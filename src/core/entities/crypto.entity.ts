@@ -1,6 +1,6 @@
 
 
-export interface Product {
+export interface Crypto {
   id: string;
   simbolo: string;
   nombre: string;

@@ -6,11 +6,20 @@ interface Options {
   params: Record<string,string>;
 }
 
-
+/**
+ * Implementación del adaptador HTTP utilizando la librería Axios.
+ * Proporciona métodos para realizar peticiones GET, POST, PUT y DELETE,
+ * encapsulando la lógica de Axios y adaptándola a la interfaz `HttpAdapter`.
+ */
 export class AxiosAdapter implements HttpAdapter {
   
   private axiosInstance: AxiosInstance;
-
+  /**
+   * Constructor de la clase AxiosAdapter.
+   * Inicializa la instancia de Axios con las opciones proporcionadas.
+   *
+   * @param {Options} options - Objeto que contiene la configuración del adaptador.
+   */
   constructor( options: Options ) {
     this.axiosInstance = axios.create({
       baseURL: options.baseUrl,
@@ -18,7 +27,15 @@ export class AxiosAdapter implements HttpAdapter {
     })
   }
 
-  
+    /**
+   * Realiza una petición HTTP GET a la URL especificada.
+   *
+   * @template T El tipo de la respuesta que se espera recibir.
+   * @param {string} url La URL a la que se realizará la petición GET.
+   * @param {Record<string, unknown> | undefined} options Opciones adicionales para la petición (opcional).
+   * @returns {Promise<T>} Una promesa que resuelve con los datos de la respuesta.
+   * @throws {Error} Si ocurre un error durante la petición.
+   */
   async get<T>( url: string, options?: Record<string, unknown> | undefined ): Promise<T> {
     
     try {
@@ -32,9 +49,7 @@ export class AxiosAdapter implements HttpAdapter {
   }
 
   async post<T>(url: string, info: T, options?: Record<string, unknown>): Promise<T> {
-    try {
-      console.log('producto info', info);
-      
+    try {      
       const { data } = await this.axiosInstance.post<T>(url, info, {
         params: options, // o headers si prefieres
       });
